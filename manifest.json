@@ -1,0 +1,14 @@
+{
+  "name": "Aloha Limpieza",
+  "short_name": "Aloha Limpieza",
+  "description": "Asistente de limpieza para Aloha Mental Arithmetic: checklists, calendario, inventario y estadísticas.",
+  "start_url": "/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F6F5F1",
+  "theme_color": "#0F766E",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

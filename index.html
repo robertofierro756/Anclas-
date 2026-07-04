@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Aloha Limpieza</title>
+<meta name="description" content="Asistente de limpieza para Aloha Mental Arithmetic" />
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json" />
+<meta name="theme-color" content="#0F766E" />
+<link rel="icon" href="./icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="./icon.svg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Aloha Limpieza" />
+<meta name="mobile-web-app-capable" content="yes" />
+
+<!-- React 18 + Babel standalone (transforma el JSX directamente en el navegador) -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+  html, body { margin: 0; padding: 0; background: #F6F5F1; }
+  #splash { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #F6F5F1; font-family: 'Segoe UI', sans-serif; color: #1C1D1B; z-index: 9999; }
+</style>
+</head>
+<body>
+  <div id="splash">Cargando Aloha Limpieza…</div>
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react" data-type="module" src="./app.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => { const s = document.getElementById("splash"); if (s) s.remove(); }, 400);
+    });
+
+    // Registro del service worker para instalación y uso sin conexión.
+    // Nota: los service workers solo funcionan cuando el sitio se sirve por
+    // http(s) (por ejemplo alojado en GitHub Pages, Netlify, Vercel, etc.),
+    // no cuando el archivo se abre directamente con doble clic (file://).
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
